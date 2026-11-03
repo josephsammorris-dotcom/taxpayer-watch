@@ -213,6 +213,15 @@
     background: var(--paper-raised);
   }
 
+  .tag-pill {
+    font-size: 0.68rem;
+    padding: 2px 9px;
+    border-radius: 20px;
+    border: 1px solid var(--alarm-soft);
+    color: var(--alarm);
+    background: rgba(168,52,28,0.07);
+  }
+
   .figures-row {
     display: flex;
     align-items: center;
@@ -551,6 +560,7 @@
               <span>&middot;</span>
               <span>${entry.period}</span>
               <span class="level-pill">${levelLabel}</span>
+              ${entry.tag ? `<span class="tag-pill">${entry.tag}</span>` : ''}
             </div>
             <div class="figures-row">
               <span class="amount">${entry.amountLabel}</span>

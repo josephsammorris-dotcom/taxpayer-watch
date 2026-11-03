@@ -152,6 +152,27 @@
       ]
     },
     {
+      "id": "aid-budget-empty-hotel-rooms",
+      "title": "Aid watchdog finds taxpayer-funded foreign aid is paying for empty asylum hotel rooms",
+      "department": "Home Office / FCDO (foreign aid budget)",
+      "level": "central",
+      "tag": "Foreign aid",
+      "amount": 600000000,
+      "amountLabel": "~£600m/yr",
+      "period": "ongoing, estimated annualised from Dec 2023 data",
+      "dateReported": "2025-10-15",
+      "absurdityScore": 9,
+      "absurdityLabel": "Paying for rooms nobody is in",
+      "commentary": "UK aid rules let the Home Office count the cost of housing asylum seekers in Britain as official development assistance — money that's meant to help people overseas. The Independent Commission for Aid Impact (ICAI), the UK's official aid watchdog, found the Home Office was using aid funds to pay for asylum hotel rooms that were sitting empty: nearly £50m in December 2023 alone, which ICAI estimated works out to roughly £600m a year. More broadly, ICAI found that in 2024 the aid budget spent £2.8bn on UK asylum costs — more than the UK spent on humanitarian aid overseas that year, and about a fifth of the entire aid budget.",
+      "sourceName": "ICAI / Inkl",
+      "sourceUrl": "https://www.inkl.com/news/uk-government-draining-aid-budget-with-broken-asylum-hotels-policy-watchdog-warns",
+      "equivalences": [
+        { "type": "homes", "count": 2479 },
+        { "type": "tempAccommodation", "count": 28103 },
+        { "type": "nurseSalary", "count": 18708 }
+      ]
+    },
+    {
       "id": "east-suffolk-bin-lids",
       "title": "Council spends £350,000 replacing bin lids with a different colour",
       "department": "East Suffolk Council",
