@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Taxpayer Watch — UK government spending, ranked by absurdity</title>
-<meta name="description" content="UK government and council spending, ranked by how little sense it makes — then by size of the bill. Every figure sourced.">
+<meta name="description" content="UK government and council spending, ranked by how little sense it makes — then by size of the bill. Every figure sourced, with real-world comparisons.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -16,6 +16,7 @@
     --paper: #e9e6db;
     --paper-raised: #f5f3ea;
     --paper-deep: #ddd9ca;
+    --panel-bg: #e3dfd0;
     --rule: #c7c2ae;
     --rule-strong: #a9a28a;
     --alarm: #a8341c;
@@ -42,7 +43,7 @@
   }
 
   .wrap {
-    max-width: 780px;
+    max-width: 920px;
     margin: 0 auto;
     padding: 0 22px 90px;
   }
@@ -52,6 +53,7 @@
   header.masthead {
     padding: 52px 0 36px;
     position: relative;
+    max-width: 780px;
   }
 
   .stamp {
@@ -104,11 +106,7 @@
     flex-wrap: wrap;
   }
 
-  .stat {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
+  .stat { display: flex; flex-direction: column; gap: 2px; }
 
   .stat .figure {
     font-family: 'IBM Plex Mono', monospace;
@@ -118,11 +116,7 @@
     line-height: 1;
   }
 
-  .stat .label {
-    font-size: 0.78rem;
-    color: var(--ink-soft);
-    margin-top: 4px;
-  }
+  .stat .label { font-size: 0.78rem; color: var(--ink-soft); margin-top: 4px; }
 
   /* ---------- Controls ---------- */
 
@@ -134,10 +128,7 @@
     flex-wrap: wrap;
   }
 
-  .controls label {
-    font-size: 0.92rem;
-    color: var(--ink-soft);
-  }
+  .controls label { font-size: 0.92rem; color: var(--ink-soft); }
 
   select#levelFilter {
     font-family: 'Newsreader', Georgia, serif;
@@ -151,10 +142,7 @@
     cursor: pointer;
   }
 
-  .scope-note {
-    font-size: 0.78rem;
-    color: var(--ink-faint);
-  }
+  .scope-note { font-size: 0.78rem; color: var(--ink-faint); }
 
   /* ---------- Entries ---------- */
 
@@ -214,10 +202,7 @@
     margin-bottom: 18px;
   }
 
-  .meta-line .dept {
-    font-weight: 500;
-    color: var(--ink);
-  }
+  .meta-line .dept { font-weight: 500; color: var(--ink); }
 
   .level-pill {
     font-size: 0.68rem;
@@ -243,10 +228,7 @@
     letter-spacing: -0.01em;
   }
 
-  .meter-wrap {
-    flex: 1;
-    min-width: 170px;
-  }
+  .meter-wrap { flex: 1; min-width: 170px; }
 
   .meter-top {
     display: flex;
@@ -266,18 +248,24 @@
     border: 1px solid var(--rule);
   }
 
-  .meter-fill {
-    height: 100%;
-    border-radius: 5px 0 0 5px;
-    transition: width 0.3s ease;
-  }
+  .meter-fill { height: 100%; border-radius: 5px 0 0 5px; transition: width 0.3s ease; }
 
   .absurdity-caption {
     font-size: 0.9rem;
     color: var(--ink-soft);
     font-style: italic;
-    margin: 0 0 16px;
+    margin: 0 0 18px;
   }
+
+  /* content row: story + comparison panel side by side on wide screens */
+
+  .content-row {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .story { flex: 1; min-width: 0; }
 
   .commentary {
     font-size: 1.05rem;
@@ -286,10 +274,7 @@
     color: #232733;
   }
 
-  .source-link {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.76rem;
-  }
+  .source-link { font-family: 'IBM Plex Mono', monospace; font-size: 0.76rem; }
 
   .source-link a {
     color: var(--ink-soft);
@@ -298,6 +283,70 @@
   }
 
   .source-link a:hover { color: var(--ink); text-decoration-color: var(--ink); }
+
+  /* comparison panel */
+
+  .panel {
+    background: var(--panel-bg);
+    border: 1px solid var(--rule-strong);
+    border-radius: 4px;
+    padding: 16px 18px;
+    flex-shrink: 0;
+  }
+
+  .panel-heading {
+    font-size: 0.78rem;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin: 0 0 12px;
+  }
+
+  .per-unit {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px dashed var(--rule-strong);
+  }
+
+  .per-unit .pu-amount {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--alarm);
+  }
+
+  .per-unit .pu-label { font-size: 0.82rem; color: var(--ink-soft); }
+
+  .equiv-list { display: flex; flex-direction: column; gap: 12px; }
+
+  .equiv-row { display: flex; align-items: center; gap: 10px; }
+
+  .equiv-icon {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-soft);
+  }
+
+  .equiv-icon svg { width: 20px; height: 20px; }
+
+  .equiv-text { font-size: 0.86rem; line-height: 1.35; color: var(--ink); }
+
+  .equiv-text strong {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  @media (min-width: 760px) {
+    .content-row { flex-direction: row; align-items: flex-start; }
+    .panel { width: 250px; }
+  }
 
   /* ---------- Footer ---------- */
 
@@ -311,6 +360,16 @@
   }
 
   footer p { margin: 0 0 11px; }
+
+  footer .sources-list {
+    margin: 10px 0 18px;
+    padding-left: 18px;
+    font-size: 0.8rem;
+  }
+
+  footer .sources-list li { margin-bottom: 4px; }
+
+  footer .sources-list a { color: var(--ink-soft); }
 
   @media (max-width: 480px) {
     header.masthead { padding-top: 36px; }
@@ -345,13 +404,19 @@
 
     <main id="entries"></main>
 
-    <footer>
-      <p>Entries are drawn from published government contract notices, National Audit Office reports, Public Accounts Committee findings and local news reporting, with a link to the original source on every entry. The absurdity score is editorial judgement, not an official measure — it weighs budget overruns, lack of public justification, and whether the spend demonstrably helped the people paying for it. The total above sums the headline figure quoted in each source; some are contract ceilings or estimates rather than confirmed final costs.</p>
-      <p>Spotted something that belongs here, or think we've got a figure wrong? Every entry links to its source — check it, and let us know.</p>
-    </footer>
+    <footer id="footer"></footer>
   </div>
 
 <script>
+  const ICONS = {
+    homes: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-9"/><path d="M10 20v-6h4v6"/></svg>',
+    nurseSalary: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>',
+    teacherSalary: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5C6 4.3 9 4 12 5.3c3-1.3 6-1 8 .2v13c-2-1.2-5-1.5-8-.2-3-1.3-6-1-8 .2Z"/><path d="M12 5.3v13"/></svg>',
+    policeSalary: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c2.3 1.4 4.6 1.9 7 1.9 0 7.4-2.8 12-7 15.1-4.2-3.1-7-7.7-7-15.1 2.4 0 4.7-.5 7-1.9Z"/></svg>',
+    tempAccommodation: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7.5" r="3"/><path d="M5.5 20c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5"/></svg>',
+    gdp: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z"/></svg>'
+  };
+
   function scoreColor(score) {
     if (score >= 8) return 'var(--alarm)';
     if (score >= 5) return 'var(--amber)';
@@ -369,13 +434,51 @@
     return '£' + n.toLocaleString('en-GB');
   }
 
+  function commas(n) { return Math.round(n).toLocaleString('en-GB'); }
+
+  function equivSentence(eq, benchmarks) {
+    if (eq.type === 'gdpFiji' || eq.type === 'gdpMaldives') {
+      const b = benchmarks[eq.type];
+      const ratio = eq.amount / b.valueGBP;
+      const times = ratio >= 1.15 ? `${ratio.toFixed(1)}×` : 'roughly the size of';
+      const text = ratio >= 1.15
+        ? `<strong>${times}</strong> ${b.label}`
+        : `<strong>almost as much as</strong> ${b.label}`;
+      return { icon: ICONS.gdp, text };
+    }
+    const b = benchmarks[eq.type];
+    const count = eq.count;
+    let noun;
+    if (eq.type === 'homes') noun = count === 1 ? 'new home' : 'new homes';
+    else if (eq.type === 'tempAccommodation') noun = count === 1 ? 'homeless household housed for a year' : 'homeless households housed for a year';
+    else if (eq.type === 'nurseSalary') noun = "year's salary for " + (count === 1 ? 'one NHS nurse' : commas(count) + ' NHS nurses');
+    else if (eq.type === 'teacherSalary') noun = "year's salary for " + (count === 1 ? 'one newly qualified teacher' : commas(count) + ' newly qualified teachers');
+    else if (eq.type === 'policeSalary') noun = "year's salary for " + (count === 1 ? 'one police constable' : commas(count) + ' police constables');
+
+    if (eq.type === 'nurseSalary' || eq.type === 'teacherSalary' || eq.type === 'policeSalary') {
+      return { icon: ICONS[eq.type], text: `<strong>${noun}</strong>` };
+    }
+    return { icon: ICONS[eq.type], text: `<strong>${commas(count)}</strong> ${noun}` };
+  }
+
   async function render() {
     const res = await fetch('data.json');
     const data = await res.json();
+    const benchmarks = data.benchmarks;
 
     const levelFilter = document.getElementById('levelFilter');
     const container = document.getElementById('entries');
     const statStrip = document.getElementById('statStrip');
+    const footer = document.getElementById('footer');
+
+    footer.innerHTML = `
+      <p>Entries are drawn from published government contract notices, National Audit Office reports, Public Accounts Committee findings and local news reporting, with a link to the original source on every entry. The absurdity score is editorial judgement, not an official measure. The total above sums the headline figure quoted in each source; some are contract ceilings or estimates rather than confirmed final costs.</p>
+      <p>Comparison figures (homes, salaries, temporary accommodation, GDP) are approximate, sourced below — a guide to scale, not an exact equivalence:</p>
+      <ul class="sources-list">
+        ${Object.values(benchmarks).filter(b => b.sourceUrl).map(b => `<li>${b.label}: <a href="${b.sourceUrl}" target="_blank" rel="noopener noreferrer">${b.sourceName}</a></li>`).join('')}
+      </ul>
+      <p>Spotted something that belongs here, or think we've got a figure wrong? Every entry links to its source — check it, and let us know.</p>
+    `;
 
     function drawStats(level) {
       const inLevel = data.entries.filter(e => e.level === level);
@@ -419,6 +522,26 @@
         el.className = 'entry';
         el.style.animationDelay = (i * 0.045) + 's';
         const color = scoreColor(entry.absurdityScore);
+
+        const equivRows = (entry.equivalences || []).map(eq => {
+          const withAmount = Object.assign({ amount: entry.amount }, eq);
+          const { icon, text } = equivSentence(withAmount, benchmarks);
+          return `<div class="equiv-row"><span class="equiv-icon">${icon}</span><span class="equiv-text">${text}</span></div>`;
+        }).join('');
+
+        const perUnitHtml = entry.perUnit ? `
+          <div class="per-unit">
+            <span class="pu-amount">£${entry.perUnit.cost.toFixed(2)}</span>
+            <span class="pu-label">per ${entry.perUnit.unitLabel}<br>(${commas(entry.perUnit.count)} ${entry.perUnit.unitLabelPlural})</span>
+          </div>` : '';
+
+        const panelHtml = (equivRows || perUnitHtml) ? `
+          <aside class="panel">
+            <p class="panel-heading">Put another way</p>
+            ${perUnitHtml}
+            <div class="equiv-list">${equivRows}</div>
+          </aside>` : '';
+
         el.innerHTML = `
           <div class="rank-badge" style="border-color:${color}; color:${color};">${i + 1}</div>
           <div class="entry-body">
@@ -439,8 +562,13 @@
               </div>
             </div>
             <p class="absurdity-caption">${entry.absurdityLabel}</p>
-            <p class="commentary">${entry.commentary}</p>
-            <p class="source-link"><a href="${entry.sourceUrl}" target="_blank" rel="noopener noreferrer">Source: ${entry.sourceName} ↗</a></p>
+            <div class="content-row">
+              <div class="story">
+                <p class="commentary">${entry.commentary}</p>
+                <p class="source-link"><a href="${entry.sourceUrl}" target="_blank" rel="noopener noreferrer">Source: ${entry.sourceName} ↗</a></p>
+              </div>
+              ${panelHtml}
+            </div>
           </div>
         `;
         container.appendChild(el);

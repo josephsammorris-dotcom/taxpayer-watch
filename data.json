@@ -1,5 +1,15 @@
 {
   "lastUpdated": "2026-11-03",
+  "benchmarks": {
+    "note": "Comparison figures used to translate spending into everyday terms. Each is sourced and approximate — a guide to scale, not a precise equivalence.",
+    "homes": { "value": 242000, "label": "to build one new home", "sourceName": "Inside Housing / Home Builders Federation", "sourceUrl": "https://insidehousing.co.uk/news/average-cost-of-building-a-home-to-hit-250000-with-new-building-safety-and-green-requirements-88723" },
+    "nurseSalary": { "value": 32073, "label": "NHS Band 5 nurse's starting salary, 2026/27", "sourceName": "Caring for Care", "sourceUrl": "https://caringforcare.co.uk/nhs-nursing-pay-bands-2026/" },
+    "teacherSalary": { "value": 34069, "label": "newly qualified teacher's starting salary, England, 2026/27", "sourceName": "UK Net Pay", "sourceUrl": "https://uknetpay.co.uk/insights/teacher-pay-scale-2026-27" },
+    "policeSalary": { "value": 32255, "label": "police constable's starting salary, from Sept 2026", "sourceName": "UK Net Pay", "sourceUrl": "https://uknetpay.co.uk/insights/police-officer-salary-uk-2026" },
+    "tempAccommodation": { "value": 21350, "label": "average cost of housing one homeless household for a year", "sourceName": "Inside Housing", "sourceUrl": "https://www.insidehousing.co.uk/news/english-councils-temporary-accommodation-bill-rises-to-28bn-93832" },
+    "gdpFiji": { "valueGBP": 4223000000, "label": "Fiji's entire annual economic output", "sourceName": "World Bank, via StatisticsTimes (2023 data, converted at approx. $1.30/£)", "sourceUrl": "https://statisticstimes.com/economy/country/fiji-gdp.php" },
+    "gdpMaldives": { "valueGBP": 5077000000, "label": "the Maldives' entire annual economic output", "sourceName": "World Bank, via StatisticsTimes (2023 data, converted at approx. $1.30/£)", "sourceUrl": "https://statisticstimes.com/economy/country/maldives-gdp.php" }
+  },
   "entries": [
     {
       "id": "hmrc-salesforce-crm",
@@ -14,7 +24,12 @@
       "absurdityLabel": "Budget nearly doubled, no public justification",
       "commentary": "HMRC originally budgeted £1.2bn for a new case-management and CRM platform. It signed for up to £2.4bn — a near-doubling — with no published explanation of what changed. The pitch is that AI tools will let staff \"resolve more queries at first contact.\" Taxpayers are being asked to trust that a longer, pricier version of a contract will succeed where the shorter, cheaper version was expected to.",
       "sourceName": "CX Today",
-      "sourceUrl": "https://cxtoday.com/hmrc-selects-salesforce-for-2bn-crm-program-as-overhaul-takes-shape"
+      "sourceUrl": "https://cxtoday.com/hmrc-selects-salesforce-for-2bn-crm-program-as-overhaul-takes-shape",
+      "equivalences": [
+        { "type": "homes", "count": 9917 },
+        { "type": "nurseSalary", "count": 74830 },
+        { "type": "tempAccommodation", "count": 112412 }
+      ]
     },
     {
       "id": "home-office-asylum-hotels",
@@ -29,7 +44,12 @@
       "absurdityLabel": "Watchdog calls the cost itself disproportionate",
       "commentary": "The National Audit Office described the cost of supporting asylum seekers as \"disproportionately high,\" driven by delays and backlogs rather than by the underlying need. This is a case where the waste isn't a single bad contract — it's years of short-term fixes compounding into a near-£5bn annual bill.",
       "sourceName": "STV News / National Audit Office",
-      "sourceUrl": "https://news.stv.tv/world/asylum-system-delays-and-backlogs-have-wasted-taxpayers-money-watchdog-finds"
+      "sourceUrl": "https://news.stv.tv/world/asylum-system-delays-and-backlogs-have-wasted-taxpayers-money-watchdog-finds",
+      "equivalences": [
+        { "type": "homes", "count": 20248 },
+        { "type": "tempAccommodation", "count": 229508 },
+        { "type": "gdpMaldives", "count": null }
+      ]
     },
     {
       "id": "cancelled-projects-6-6bn",
@@ -44,7 +64,12 @@
       "absurdityLabel": "Money spent that achieved literally nothing",
       "commentary": "The Public Accounts Committee's own words: this was spending that \"did not achieve its intended objectives or create any value for the taxpayer.\" The Ministry of Defence and Department for Work and Pensions were named as the biggest offenders. This isn't overspend on something useful — it's money that simply didn't produce anything.",
       "sourceName": "Civil Service World / GB News",
-      "sourceUrl": "https://www.civilserviceworld.com/professions/article/mps-urge-government-to-probe-root-causes-of-billions-in-wasted-public-funds"
+      "sourceUrl": "https://www.civilserviceworld.com/professions/article/mps-urge-government-to-probe-root-causes-of-billions-in-wasted-public-funds",
+      "equivalences": [
+        { "type": "homes", "count": 27273 },
+        { "type": "teacherSalary", "count": 193750 },
+        { "type": "gdpFiji", "count": null }
+      ]
     },
     {
       "id": "mod-writeoffs-2026",
@@ -59,7 +84,12 @@
       "absurdityLabel": "Paid, built, then scrapped — across 17,622 separate write-offs",
       "commentary": "The headline figure covers 17,622 separate cases. The detail is what makes it sting: £254m written off cancelling an upgrade to the RAF's Shadow spy planes, £236m scrapping the Army's Bowman radio replacement after more than £690m had already gone into it, and £408m on Atomic Weapons Establishment building work. This is money spent building things that were then abandoned before they were finished.",
       "sourceName": "The Daily Sceptic",
-      "sourceUrl": "https://dailysceptic.org/2026/09/20/mod-writes-off-1-2-billion-in-a-single-year-on-scrapped-spy-planes-warships-and-crashed-drones/"
+      "sourceUrl": "https://dailysceptic.org/2026/09/20/mod-writes-off-1-2-billion-in-a-single-year-on-scrapped-spy-planes-warships-and-crashed-drones/",
+      "equivalences": [
+        { "type": "homes", "count": 5083 },
+        { "type": "policeSalary", "count": 38135 },
+        { "type": "teacherSalary", "count": 36109 }
+      ]
     },
     {
       "id": "whitehall-consultants",
@@ -74,7 +104,12 @@
       "absurdityLabel": "Can't shrink a bill you can't measure",
       "commentary": "In 2024 the government promised to cut £1.2bn from its consultancy bill by 2026. The Public Accounts Committee found the Cabinet Office still doesn't have a clear grip on what departments actually spend — figures from the Treasury and the NAO for the same year differ by hundreds of millions of pounds, and consultancy costs are often bundled into other budget lines, which the committee warned lets departments under-report rather than genuinely cut.",
       "sourceName": "National Audit Office / GB News",
-      "sourceUrl": "https://www.nao.org.uk/press-releases/government-lacks-a-clear-picture-on-how-much-it-spends-on-consultants/"
+      "sourceUrl": "https://www.nao.org.uk/press-releases/government-lacks-a-clear-picture-on-how-much-it-spends-on-consultants/",
+      "equivalences": [
+        { "type": "homes", "count": 9215 },
+        { "type": "nurseSalary", "count": 69527 },
+        { "type": "tempAccommodation", "count": 104450 }
+      ]
     },
     {
       "id": "government-it-legacy-systems",
@@ -89,7 +124,12 @@
       "absurdityLabel": "Paying twice: once to maintain, once to replace",
       "commentary": "The NAO's auditor general called government IT spending \"inexcusably wasteful,\" citing a lack of digital and procurement capability. Cost overruns on major digital programmes have hit over £3bn, with the NAO estimating government has lost the equivalent of 29 years of modernisation. Taxpayers are funding the upkeep of outdated systems and the cost of trying to replace them at the same time.",
       "sourceName": "ITPro / National Audit Office",
-      "sourceUrl": "https://www.itpro.com/business/digital-transformation/uk-government-it-spending-is-inexcusably-wasteful-as-millions-lost-maintaining-outdated-systems"
+      "sourceUrl": "https://www.itpro.com/business/digital-transformation/uk-government-it-spending-is-inexcusably-wasteful-as-millions-lost-maintaining-outdated-systems",
+      "equivalences": [
+        { "type": "homes", "count": 12397 },
+        { "type": "nurseSalary", "count": 93547 },
+        { "type": "policeSalary", "count": 93008 }
+      ]
     },
     {
       "id": "hmrc-crm-sandboxes",
@@ -104,7 +144,12 @@
       "absurdityLabel": "Small, arguably sensible — but a sign of how big the main bill got",
       "commentary": "HMRC paid Tata Consultancy Services £2.5m to build \"vendor-agnostic sandboxes\" so it could test CRM platforms before committing to one. On its own this is a reasonable bit of due diligence. In hindsight, the due diligence still led to a budget overrun of over £1bn on the resulting Salesforce contract — raising the question of what the sandboxes actually changed.",
       "sourceName": "PublicTechnology.net",
-      "sourceUrl": "https://www.pulse.bot/govtech/news/hmrc-builds-25m-sandboxes-to-help-inform-ongoing-1bn-crm-procurement-20741317-0991-4d33-a485-f01738e8958d/"
+      "sourceUrl": "https://www.pulse.bot/govtech/news/hmrc-builds-25m-sandboxes-to-help-inform-ongoing-1bn-crm-procurement-20741317-0991-4d33-a485-f01738e8958d/",
+      "equivalences": [
+        { "type": "homes", "count": 10 },
+        { "type": "nurseSalary", "count": 78 },
+        { "type": "teacherSalary", "count": 73 }
+      ]
     },
     {
       "id": "east-suffolk-bin-lids",
@@ -119,7 +164,12 @@
       "absurdityLabel": "£350k so a bin is the \"right\" colour",
       "commentary": "To avoid confusion with new grey recycling bins that have green lids, East Suffolk Council is swapping the lids on 50,000 households' green garden-waste bins for brown ones — at a cost of £300,000 for the lids plus £50,000 to fit them. The council says replacing the whole bins would have cost over £1m, and the previous administration's choice of green bins is the root cause. Residents suggested stickers, or just changing bins as they wear out, would have done the job for a fraction of the price.",
       "sourceName": "GB News",
-      "sourceUrl": "https://www.gbnews.com/news/east-suffolk-council-taxpayer-waste-bin-lids"
+      "sourceUrl": "https://www.gbnews.com/news/east-suffolk-council-taxpayer-waste-bin-lids",
+      "perUnit": { "count": 50000, "unitLabel": "bin lid", "unitLabelPlural": "bin lids", "cost": 7.0 },
+      "equivalences": [
+        { "type": "nurseSalary", "count": 11 },
+        { "type": "teacherSalary", "count": 10 }
+      ]
     },
     {
       "id": "somerset-newton-consulting",
@@ -134,7 +184,12 @@
       "absurdityLabel": "Spending millions to find out how to stop overspending",
       "commentary": "Somerset Council, which has around £1bn in debt and a projected £190m funding gap over five years, hired consultancy Newton Consulting for a contract that could reach nearly £20m to identify savings — on top of £1m already spent on a public vote over a council restructure. The council defends the hire as proven expertise; critics note the council had already found £34m in savings and cut 555 jobs without it, and question paying this much just to be told where to cut further.",
       "sourceName": "GB News",
-      "sourceUrl": "https://www.gbnews.com/news/somerset-council-taxpayer-money-save"
+      "sourceUrl": "https://www.gbnews.com/news/somerset-council-taxpayer-money-save",
+      "equivalences": [
+        { "type": "homes", "count": 83 },
+        { "type": "nurseSalary", "count": 623 },
+        { "type": "tempAccommodation", "count": 937 }
+      ]
     },
     {
       "id": "barking-dagenham-grant",
@@ -149,7 +204,12 @@
       "absurdityLabel": "No one disciplined, taxpayers foot the bill twice",
       "commentary": "An internal review found Barking and Dagenham Council spent a £1.8m central government public health grant — earmarked for stop-smoking initiatives, tackling illegal vapes, and improving schoolchildren's health — on things outside the grant's conditions. The council's own health director admitted he handed the money to departments without checking how it was spent. No officer faced disciplinary action, and because the grant won't be repaid to government, the council must now find £1.8m from its general budget — taxpayers effectively pay for the same programmes twice.",
       "sourceName": "GB News",
-      "sourceUrl": "https://www.gbnews.com/news/barking-and-dagenham-council-misused-two-million-grant-money"
+      "sourceUrl": "https://www.gbnews.com/news/barking-and-dagenham-council-misused-two-million-grant-money",
+      "equivalences": [
+        { "type": "homes", "count": 7 },
+        { "type": "nurseSalary", "count": 56 },
+        { "type": "teacherSalary", "count": 53 }
+      ]
     },
     {
       "id": "southwark-consultants-agency",
@@ -164,7 +224,12 @@
       "absurdityLabel": "£6.2m more than the year before, with no sign of slowing",
       "commentary": "Southwark Council spent £31m on consultants and agency staff in under 10 months — £2m on consultants and £29m on agency staff — £6.2m more than over the same period the year before. The opposition called it a waste of money that should go to frontline services; the council says it needs specialist expertise and is working to convert roles to permanent staff, but the year-on-year increase suggests that isn't happening fast.",
       "sourceName": "Southwark News / Inkl",
-      "sourceUrl": "https://inkl.com/news/southwark-council-sparks-backlash-after-spending-31m-on-consultants-and-agency-staff-in-under-10-months"
+      "sourceUrl": "https://inkl.com/news/southwark-council-sparks-backlash-after-spending-31m-on-consultants-and-agency-staff-in-under-10-months",
+      "equivalences": [
+        { "type": "homes", "count": 128 },
+        { "type": "nurseSalary", "count": 966 },
+        { "type": "tempAccommodation", "count": 1452 }
+      ]
     }
   ]
 }
