@@ -130,7 +130,7 @@
 
   .controls label { font-size: 0.92rem; color: var(--ink-soft); }
 
-  select#levelFilter {
+  select#levelFilter, select#bandFilter {
     font-family: 'Newsreader', Georgia, serif;
     font-size: 0.98rem;
     font-weight: 500;
@@ -143,6 +143,27 @@
   }
 
   .scope-note { font-size: 0.78rem; color: var(--ink-faint); }
+
+  .your-share {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 0 0 18px;
+    padding: 10px 14px;
+    background: rgba(168,52,28,0.06);
+    border: 1px solid var(--alarm-soft);
+    border-radius: 4px;
+    width: fit-content;
+  }
+
+  .your-share .ys-amount {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--alarm);
+  }
+
+  .your-share .ys-label { font-size: 0.82rem; color: var(--ink-soft); }
 
   /* ---------- Entries ---------- */
 
@@ -407,6 +428,12 @@
           <option value="central">Central government</option>
           <option value="council">Local councils</option>
         </select>
+        <label for="bandFilter">Your share as a:</label>
+        <select id="bandFilter">
+          <option value="basic">Basic rate taxpayer</option>
+          <option value="higher">Higher rate taxpayer</option>
+          <option value="additional">Additional rate taxpayer</option>
+        </select>
         <span class="scope-note">Sourced from contract notices, NAO/PAC reports and local reporting.</span>
       </div>
     </header>
@@ -445,6 +472,17 @@
 
   function commas(n) { return Math.round(n).toLocaleString('en-GB'); }
 
+  function taxShareFor(amount, bandKey, taxShare) {
+    const band = taxShare.bands[bandKey];
+    return (amount / taxShare.totalIncomeTaxGBP) * band.liability;
+  }
+
+  function formatShare(n) {
+    if (n < 0.01) return '<£0.01';
+    if (n < 1000) return '£' + n.toFixed(2);
+    return '£' + n.toLocaleString('en-GB', { maximumFractionDigits: 0 });
+  }
+
   function equivSentence(eq, benchmarks) {
     if (eq.type === 'gdpFiji' || eq.type === 'gdpMaldives') {
       const b = benchmarks[eq.type];
@@ -476,9 +514,11 @@
     const benchmarks = data.benchmarks;
 
     const levelFilter = document.getElementById('levelFilter');
+    const bandFilter = document.getElementById('bandFilter');
     const container = document.getElementById('entries');
     const statStrip = document.getElementById('statStrip');
     const footer = document.getElementById('footer');
+    const taxShare = data.taxShare;
 
     footer.innerHTML = `
       <p>Entries are drawn from published government contract notices, National Audit Office reports, Public Accounts Committee findings and local news reporting, with a link to the original source on every entry. The absurdity score is editorial judgement, not an official measure. The total above sums the headline figure quoted in each source; some are contract ceilings or estimates rather than confirmed final costs.</p>
@@ -486,17 +526,23 @@
       <ul class="sources-list">
         ${Object.values(benchmarks).filter(b => b.sourceUrl).map(b => `<li>${b.label}: <a href="${b.sourceUrl}" target="_blank" rel="noopener noreferrer">${b.sourceName}</a></li>`).join('')}
       </ul>
+      <p><strong>"Your share" figures:</strong> ${taxShare.note} Total UK Income Tax take used: <a href="${taxShare.sourceUrl}" target="_blank" rel="noopener noreferrer">${taxShare.sourceName}</a>. Representative incomes used — Basic rate: £${commas(taxShare.bands.basic.representativeIncome)}, Higher rate: £${commas(taxShare.bands.higher.representativeIncome)}, Additional rate: £${commas(taxShare.bands.additional.representativeIncome)} — taxed under 2025/26 rates to get each band's liability.</p>
       <p>Spotted something that belongs here, or think we've got a figure wrong? Every entry links to its source — check it, and let us know.</p>
     `;
 
-    function drawStats(level) {
+    function drawStats(level, bandKey) {
       const inLevel = data.entries.filter(e => e.level === level);
       const total = inLevel.reduce((sum, e) => sum + e.amount, 0);
+      const yourShareTotal = inLevel.reduce((sum, e) => sum + taxShareFor(e.amount, bandKey, taxShare), 0);
       const worst = [...inLevel].sort((a, b) => b.absurdityScore - a.absurdityScore)[0];
       statStrip.innerHTML = `
         <div class="stat">
           <span class="figure">${formatTotal(total)}</span>
           <span class="label">flagged across ${inLevel.length} ${inLevel.length === 1 ? 'entry' : 'entries'}</span>
+        </div>
+        <div class="stat">
+          <span class="figure">${formatShare(yourShareTotal)}</span>
+          <span class="label">your rough share, as a ${taxShare.bands[bandKey].label.toLowerCase()} taxpayer</span>
         </div>
         <div class="stat">
           <span class="figure">${worst ? worst.absurdityScore + '/10' : '—'}</span>
@@ -511,7 +557,8 @@
 
     function draw() {
       const level = levelFilter.value;
-      drawStats(level);
+      const bandKey = bandFilter.value;
+      drawStats(level, bandKey);
 
       const filtered = data.entries
         .filter(e => e.level === level)
@@ -572,6 +619,10 @@
               </div>
             </div>
             <p class="absurdity-caption">${entry.absurdityLabel}</p>
+            <div class="your-share">
+              <span class="ys-amount">${formatShare(taxShareFor(entry.amount, bandFilter.value, taxShare))}</span>
+              <span class="ys-label">roughly your share, as a ${taxShare.bands[bandFilter.value].label.toLowerCase()} taxpayer</span>
+            </div>
             <div class="content-row">
               <div class="story">
                 <p class="commentary">${entry.commentary}</p>
@@ -586,6 +637,7 @@
     }
 
     levelFilter.addEventListener('change', draw);
+    bandFilter.addEventListener('change', draw);
     draw();
   }
 

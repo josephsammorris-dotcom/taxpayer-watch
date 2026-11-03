@@ -10,6 +10,17 @@
     "gdpFiji": { "valueGBP": 4223000000, "label": "Fiji's entire annual economic output", "sourceName": "World Bank, via StatisticsTimes (2023 data, converted at approx. $1.30/£)", "sourceUrl": "https://statisticstimes.com/economy/country/fiji-gdp.php" },
     "gdpMaldives": { "valueGBP": 5077000000, "label": "the Maldives' entire annual economic output", "sourceName": "World Bank, via StatisticsTimes (2023 data, converted at approx. $1.30/£)", "sourceUrl": "https://statisticstimes.com/economy/country/maldives-gdp.php" }
   },
+  "taxShare": {
+    "totalIncomeTaxGBP": 329000000000,
+    "sourceName": "Office for Budget Responsibility, 2025–26 forecast",
+    "sourceUrl": "https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/income-tax/",
+    "note": "A rough guide, not your actual tax bill. Each band uses an illustrative representative income — not an average — taxed under 2025/26 UK (England/Wales/NI) Income Tax rates and bands. It assumes this spend is funded in proportion to income tax paid, when in reality government spending is funded by a mix of income tax, VAT, National Insurance, council tax and borrowing. Scottish Income Tax rates differ and aren't reflected here.",
+    "bands": {
+      "basic": { "label": "Basic rate", "representativeIncome": 35000, "liability": 4486 },
+      "higher": { "label": "Higher rate", "representativeIncome": 60000, "liability": 11432 },
+      "additional": { "label": "Additional rate", "representativeIncome": 150000, "liability": 54331.5 }
+    }
+  },
   "entries": [
     {
       "id": "hmrc-salesforce-crm",
