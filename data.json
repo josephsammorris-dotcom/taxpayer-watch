@@ -1,0 +1,80 @@
+{
+  "lastUpdated": "2026-11-03",
+  "entries": [
+    {
+      "id": "hmrc-salesforce-crm",
+      "title": "HMRC hands Salesforce up to £2.4bn to build a customer database",
+      "department": "HM Revenue & Customs",
+      "level": "central",
+      "amount": 2400000000,
+      "amountLabel": "£2.4bn",
+      "period": "15-year contract (2026–2041)",
+      "dateReported": "2026-10-15",
+      "absurdityScore": 7,
+      "absurdityLabel": "Budget nearly doubled, no public justification",
+      "commentary": "HMRC originally budgeted £1.2bn for a new case-management and CRM platform. It signed for up to £2.4bn — a near-doubling — with no published explanation of what changed. The pitch is that AI tools will let staff \"resolve more queries at first contact.\" Taxpayers are being asked to trust that a longer, pricier version of a contract will succeed where the shorter, cheaper version was expected to.",
+      "sourceName": "CX Today",
+      "sourceUrl": "https://cxtoday.com/hmrc-selects-salesforce-for-2bn-crm-program-as-overhaul-takes-shape"
+    },
+    {
+      "id": "home-office-asylum-hotels",
+      "title": "Asylum accommodation costs hit £4.9bn in a single year",
+      "department": "Home Office",
+      "level": "central",
+      "amount": 4900000000,
+      "amountLabel": "£4.9bn",
+      "period": "2024–25",
+      "dateReported": "2026-01-01",
+      "absurdityScore": 8,
+      "absurdityLabel": "Watchdog calls the cost itself disproportionate",
+      "commentary": "The National Audit Office described the cost of supporting asylum seekers as \"disproportionately high,\" driven by delays and backlogs rather than by the underlying need. This is a case where the waste isn't a single bad contract — it's years of short-term fixes compounding into a near-£5bn annual bill.",
+      "sourceName": "STV News / National Audit Office",
+      "sourceUrl": "https://news.stv.tv/world/asylum-system-delays-and-backlogs-have-wasted-taxpayers-money-watchdog-finds"
+    },
+    {
+      "id": "cancelled-projects-6-6bn",
+      "title": "£6.6bn spent on projects that were cancelled or missed their goals",
+      "department": "Government-wide (17 departmental groups)",
+      "level": "central",
+      "amount": 6600000000,
+      "amountLabel": "£6.6bn",
+      "period": "2024–25",
+      "dateReported": "2026-05-22",
+      "absurdityScore": 9,
+      "absurdityLabel": "Money spent that achieved literally nothing",
+      "commentary": "The Public Accounts Committee's own words: this was spending that \"did not achieve its intended objectives or create any value for the taxpayer.\" The Ministry of Defence and Department for Work and Pensions were named as the biggest offenders. This isn't overspend on something useful — it's money that simply didn't produce anything.",
+      "sourceName": "Civil Service World / GB News",
+      "sourceUrl": "https://www.civilserviceworld.com/professions/article/mps-urge-government-to-probe-root-causes-of-billions-in-wasted-public-funds"
+    },
+    {
+      "id": "government-it-legacy-systems",
+      "title": "Billions spent propping up IT systems the government admits are decades out of date",
+      "department": "Government-wide (technology procurement)",
+      "level": "central",
+      "amount": 3000000000,
+      "amountLabel": "£3bn+",
+      "period": "ongoing, cumulative",
+      "dateReported": "2026-01-29",
+      "absurdityScore": 6,
+      "absurdityLabel": "Paying twice: once to maintain, once to replace",
+      "commentary": "The NAO's auditor general called government IT spending \"inexcusably wasteful,\" citing a lack of digital and procurement capability. Cost overruns on major digital programmes have hit over £3bn, with the NAO estimating government has lost the equivalent of 29 years of modernisation. Taxpayers are funding the upkeep of outdated systems and the cost of trying to replace them at the same time.",
+      "sourceName": "ITPro / National Audit Office",
+      "sourceUrl": "https://www.itpro.com/business/digital-transformation/uk-government-it-spending-is-inexcusably-wasteful-as-millions-lost-maintaining-outdated-systems"
+    },
+    {
+      "id": "hmrc-crm-sandboxes",
+      "title": "£2.5m spent building test environments to help decide how to spend £1bn+",
+      "department": "HM Revenue & Customs",
+      "level": "central",
+      "amount": 2500000,
+      "amountLabel": "£2.5m",
+      "period": "awarded April 2026",
+      "dateReported": "2026-06-15",
+      "absurdityScore": 3,
+      "absurdityLabel": "Small, arguably sensible — but a sign of how big the main bill got",
+      "commentary": "HMRC paid Tata Consultancy Services £2.5m to build \"vendor-agnostic sandboxes\" so it could test CRM platforms before committing to one. On its own this is a reasonable bit of due diligence. In hindsight, the due diligence still led to a budget overrun of over £1bn on the resulting Salesforce contract — raising the question of what the sandboxes actually changed.",
+      "sourceName": "PublicTechnology.net",
+      "sourceUrl": "https://www.pulse.bot/govtech/news/hmrc-builds-25m-sandboxes-to-help-inform-ongoing-1bn-crm-procurement-20741317-0991-4d33-a485-f01738e8958d/"
+    }
+  ]
+}
