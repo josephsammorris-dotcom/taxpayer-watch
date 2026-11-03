@@ -428,12 +428,14 @@
           <option value="central">Central government</option>
           <option value="council">Local councils</option>
         </select>
-        <label for="bandFilter">Your share as a:</label>
-        <select id="bandFilter">
-          <option value="basic">Basic rate taxpayer</option>
-          <option value="higher">Higher rate taxpayer</option>
-          <option value="additional">Additional rate taxpayer</option>
-        </select>
+        <span id="bandControl">
+          <label for="bandFilter">Your share of this, as a:</label>
+          <select id="bandFilter">
+            <option value="basic">Basic rate taxpayer</option>
+            <option value="higher">Higher rate taxpayer</option>
+            <option value="additional">Additional rate taxpayer</option>
+          </select>
+        </span>
         <span class="scope-note">Sourced from contract notices, NAO/PAC reports and local reporting.</span>
       </div>
     </header>
@@ -526,24 +528,28 @@
       <ul class="sources-list">
         ${Object.values(benchmarks).filter(b => b.sourceUrl).map(b => `<li>${b.label}: <a href="${b.sourceUrl}" target="_blank" rel="noopener noreferrer">${b.sourceName}</a></li>`).join('')}
       </ul>
-      <p><strong>"Your share" figures:</strong> ${taxShare.note} Total UK Income Tax take used: <a href="${taxShare.sourceUrl}" target="_blank" rel="noopener noreferrer">${taxShare.sourceName}</a>. Representative incomes used — Basic rate: £${commas(taxShare.bands.basic.representativeIncome)}, Higher rate: £${commas(taxShare.bands.higher.representativeIncome)}, Additional rate: £${commas(taxShare.bands.additional.representativeIncome)} — taxed under 2025/26 rates to get each band's liability.</p>
+      <p><strong>"Your share" figures</strong> (shown for central government entries only): a one-off snapshot, not a monthly or annual cost — it's your rough share of that entry's headline figure, whatever period that figure covers (a single year, a multi-year contract total, or an ongoing estimate). ${taxShare.note} Total UK Income Tax take used: <a href="${taxShare.sourceUrl}" target="_blank" rel="noopener noreferrer">${taxShare.sourceName}</a>. Representative incomes used — Basic rate: £${commas(taxShare.bands.basic.representativeIncome)}, Higher rate: £${commas(taxShare.bands.higher.representativeIncome)}, Additional rate: £${commas(taxShare.bands.additional.representativeIncome)} — taxed under 2025/26 rates to get each band's liability.</p>
       <p>Spotted something that belongs here, or think we've got a figure wrong? Every entry links to its source — check it, and let us know.</p>
     `;
 
     function drawStats(level, bandKey) {
       const inLevel = data.entries.filter(e => e.level === level);
       const total = inLevel.reduce((sum, e) => sum + e.amount, 0);
-      const yourShareTotal = inLevel.reduce((sum, e) => sum + taxShareFor(e.amount, bandKey, taxShare), 0);
       const worst = [...inLevel].sort((a, b) => b.absurdityScore - a.absurdityScore)[0];
+      const showShare = level === 'central';
+
+      const shareStat = showShare ? `
+        <div class="stat">
+          <span class="figure">${formatShare(inLevel.reduce((sum, e) => sum + taxShareFor(e.amount, bandKey, taxShare), 0))}</span>
+          <span class="label">your rough share, as a ${taxShare.bands[bandKey].label.toLowerCase()} taxpayer</span>
+        </div>` : '';
+
       statStrip.innerHTML = `
         <div class="stat">
           <span class="figure">${formatTotal(total)}</span>
           <span class="label">flagged across ${inLevel.length} ${inLevel.length === 1 ? 'entry' : 'entries'}</span>
         </div>
-        <div class="stat">
-          <span class="figure">${formatShare(yourShareTotal)}</span>
-          <span class="label">your rough share, as a ${taxShare.bands[bandKey].label.toLowerCase()} taxpayer</span>
-        </div>
+        ${shareStat}
         <div class="stat">
           <span class="figure">${worst ? worst.absurdityScore + '/10' : '—'}</span>
           <span class="label">${worst ? 'worst: ' + worst.department : 'no entries yet'}</span>
@@ -558,6 +564,7 @@
     function draw() {
       const level = levelFilter.value;
       const bandKey = bandFilter.value;
+      document.getElementById('bandControl').style.display = level === 'central' ? '' : 'none';
       drawStats(level, bandKey);
 
       const filtered = data.entries
@@ -598,6 +605,12 @@
             <div class="equiv-list">${equivRows}</div>
           </aside>` : '';
 
+        const yourShareHtml = entry.level === 'central' ? `
+            <div class="your-share">
+              <span class="ys-amount">${formatShare(taxShareFor(entry.amount, bandFilter.value, taxShare))}</span>
+              <span class="ys-label">roughly your share of this, as a ${taxShare.bands[bandFilter.value].label.toLowerCase()} taxpayer</span>
+            </div>` : '';
+
         el.innerHTML = `
           <div class="rank-badge" style="border-color:${color}; color:${color};">${i + 1}</div>
           <div class="entry-body">
@@ -619,10 +632,7 @@
               </div>
             </div>
             <p class="absurdity-caption">${entry.absurdityLabel}</p>
-            <div class="your-share">
-              <span class="ys-amount">${formatShare(taxShareFor(entry.amount, bandFilter.value, taxShare))}</span>
-              <span class="ys-label">roughly your share, as a ${taxShare.bands[bandFilter.value].label.toLowerCase()} taxpayer</span>
-            </div>
+            ${yourShareHtml}
             <div class="content-row">
               <div class="story">
                 <p class="commentary">${entry.commentary}</p>
