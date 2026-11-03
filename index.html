@@ -4,82 +4,127 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Taxpayer Watch — UK government spending, ranked by absurdity</title>
+<meta name="description" content="UK government and council spending, ranked by how little sense it makes — then by size of the bill. Every figure sourced.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #161a23;
-    --ink-soft: #4b5160;
-    --paper: #eceae2;
-    --paper-raised: #f6f5f0;
-    --rule: #cfcbbd;
-    --rule-strong: #b7b2a0;
-    --alarm: #b23a20;
-    --amber: #c98a2e;
-    --moss: #51694f;
-    --white: #fffdf8;
+    --ink-soft: #52586a;
+    --ink-faint: #868c9c;
+    --paper: #e9e6db;
+    --paper-raised: #f5f3ea;
+    --paper-deep: #ddd9ca;
+    --rule: #c7c2ae;
+    --rule-strong: #a9a28a;
+    --alarm: #a8341c;
+    --alarm-soft: #c45a3f;
+    --amber: #b9792a;
+    --moss: #4c6450;
+    --white: #fffdf7;
   }
 
   * { box-sizing: border-box; }
 
-  html, body {
-    margin: 0;
-    padding: 0;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: 'Newsreader', Georgia, serif;
-  }
+  html { background: var(--paper); }
 
   body {
-    padding: 0 20px 80px;
+    margin: 0;
+    padding: 0;
+    background:
+      radial-gradient(ellipse 1200px 500px at 15% -5%, rgba(168,52,28,0.05), transparent 60%),
+      radial-gradient(ellipse 900px 500px at 100% 0%, rgba(22,26,35,0.04), transparent 55%),
+      var(--paper);
+    color: var(--ink);
+    font-family: 'Newsreader', Georgia, serif;
+    -webkit-font-smoothing: antialiased;
   }
 
   .wrap {
-    max-width: 760px;
+    max-width: 780px;
     margin: 0 auto;
+    padding: 0 22px 90px;
   }
+
+  /* ---------- Hero ---------- */
 
   header.masthead {
-    padding: 48px 0 28px;
-    border-bottom: 3px double var(--rule-strong);
+    padding: 52px 0 36px;
+    position: relative;
   }
 
-  .masthead-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 16px;
-    flex-wrap: wrap;
+  .stamp {
+    position: absolute;
+    top: 46px;
+    right: 0;
+    transform: rotate(-4deg);
+    border: 1.5px solid var(--alarm);
+    color: var(--alarm);
+    padding: 5px 11px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    border-radius: 3px;
+    opacity: 0.78;
+    font-family: 'Newsreader', serif;
+    font-variant: small-caps;
   }
 
   h1.sitename {
     margin: 0;
-    font-size: 2.3rem;
+    font-size: 2.6rem;
     font-weight: 600;
-    letter-spacing: -0.01em;
-    line-height: 1.1;
+    letter-spacing: -0.015em;
+    line-height: 1.05;
+    max-width: 10ch;
   }
 
   .sitename .accent {
     color: var(--alarm);
-  }
-
-  .last-updated {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--ink-soft);
-    white-space: nowrap;
+    font-style: italic;
+    font-weight: 500;
   }
 
   .strapline {
-    margin: 10px 0 0;
-    font-size: 1.05rem;
+    margin: 14px 0 0;
+    font-size: 1.1rem;
     color: var(--ink-soft);
-    font-style: italic;
-    max-width: 56ch;
+    max-width: 48ch;
     line-height: 1.5;
   }
+
+  .stat-strip {
+    margin-top: 32px;
+    padding: 20px 0;
+    border-top: 1px solid var(--rule-strong);
+    border-bottom: 1px solid var(--rule-strong);
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .stat .figure {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
+    font-size: 1.9rem;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .stat .label {
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+
+  /* ---------- Controls ---------- */
 
   .controls {
     margin-top: 26px;
@@ -90,68 +135,83 @@
   }
 
   .controls label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.75rem;
+    font-size: 0.92rem;
     color: var(--ink-soft);
   }
 
   select#levelFilter {
     font-family: 'Newsreader', Georgia, serif;
-    font-size: 0.95rem;
-    padding: 7px 12px;
+    font-size: 0.98rem;
+    font-weight: 500;
+    padding: 8px 14px;
     background: var(--paper-raised);
     border: 1px solid var(--rule-strong);
-    border-radius: 2px;
+    border-radius: 3px;
     color: var(--ink);
     cursor: pointer;
   }
 
-  select#levelFilter:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
   .scope-note {
     font-size: 0.78rem;
-    color: var(--ink-soft);
+    color: var(--ink-faint);
   }
 
-  main {
-    margin-top: 10px;
-  }
+  /* ---------- Entries ---------- */
+
+  main { margin-top: 8px; }
 
   .entry {
-    padding: 36px 0;
+    padding: 38px 0;
     border-bottom: 1px solid var(--rule);
     display: grid;
-    grid-template-columns: 56px 1fr;
-    gap: 20px;
+    grid-template-columns: 58px 1fr;
+    gap: 22px;
+    opacity: 0;
+    animation: rise 0.5s ease forwards;
   }
 
-  .entry:last-child {
-    border-bottom: none;
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  .rank {
-    font-family: 'Newsreader', Georgia, serif;
-    font-weight: 500;
-    font-size: 2.1rem;
-    color: var(--rule-strong);
-    line-height: 1;
-    padding-top: 2px;
+  @media (prefers-reduced-motion: reduce) {
+    .entry { animation: none; opacity: 1; }
+  }
+
+  .entry:last-child { border-bottom: none; }
+
+  .rank-badge {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid var(--rule-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: var(--ink-soft);
+    background: var(--paper-raised);
   }
 
   .entry-body h2 {
-    margin: 0 0 6px;
-    font-size: 1.32rem;
+    margin: 0 0 8px;
+    font-size: 1.36rem;
     font-weight: 600;
-    line-height: 1.3;
+    line-height: 1.32;
+    letter-spacing: -0.005em;
   }
 
   .meta-line {
-    font-size: 0.88rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    font-size: 0.86rem;
     color: var(--ink-soft);
-    margin-bottom: 16px;
+    margin-bottom: 18px;
   }
 
   .meta-line .dept {
@@ -159,127 +219,140 @@
     color: var(--ink);
   }
 
+  .level-pill {
+    font-size: 0.68rem;
+    padding: 2px 9px;
+    border-radius: 20px;
+    border: 1px solid var(--rule-strong);
+    color: var(--ink-soft);
+    background: var(--paper-raised);
+  }
+
   .figures-row {
     display: flex;
-    align-items: baseline;
-    gap: 18px;
+    align-items: center;
+    gap: 20px;
     flex-wrap: wrap;
-    margin-bottom: 14px;
+    margin-bottom: 10px;
   }
 
   .amount {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 1.7rem;
-    font-weight: 600;
+    font-size: 1.75rem;
+    font-weight: 700;
     letter-spacing: -0.01em;
   }
 
   .meter-wrap {
     flex: 1;
-    min-width: 160px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    min-width: 170px;
   }
 
-  .meter-label {
-    font-family: 'IBM Plex Mono', monospace;
+  .meter-top {
+    display: flex;
+    justify-content: space-between;
     font-size: 0.7rem;
-    color: var(--ink-soft);
-    white-space: nowrap;
+    color: var(--ink-faint);
+    margin-bottom: 4px;
+    font-family: 'IBM Plex Mono', monospace;
   }
 
   .meter-track {
-    flex: 1;
-    height: 8px;
-    background: var(--rule);
-    border-radius: 4px;
+    height: 9px;
+    background: var(--paper-deep);
+    border-radius: 5px;
     overflow: hidden;
     position: relative;
+    border: 1px solid var(--rule);
   }
 
   .meter-fill {
     height: 100%;
-    border-radius: 4px;
+    border-radius: 5px 0 0 5px;
+    transition: width 0.3s ease;
   }
 
   .absurdity-caption {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--ink-soft);
     font-style: italic;
-    margin: -8px 0 14px;
+    margin: 0 0 16px;
   }
 
   .commentary {
-    font-size: 1.04rem;
-    line-height: 1.62;
-    margin: 0 0 14px;
+    font-size: 1.05rem;
+    line-height: 1.64;
+    margin: 0 0 16px;
+    color: #232733;
   }
 
   .source-link {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.78rem;
+    font-size: 0.76rem;
   }
 
   .source-link a {
-    color: var(--ink);
+    color: var(--ink-soft);
     text-decoration-color: var(--rule-strong);
+    text-underline-offset: 3px;
   }
 
-  .source-link a:hover {
-    text-decoration-color: var(--ink);
-  }
+  .source-link a:hover { color: var(--ink); text-decoration-color: var(--ink); }
+
+  /* ---------- Footer ---------- */
 
   footer {
-    margin-top: 50px;
-    padding-top: 24px;
-    border-top: 1px solid var(--rule);
-    font-size: 0.82rem;
+    margin-top: 54px;
+    padding-top: 26px;
+    border-top: 1px solid var(--rule-strong);
+    font-size: 0.84rem;
     color: var(--ink-soft);
-    line-height: 1.6;
+    line-height: 1.65;
   }
 
-  footer p {
-    margin: 0 0 10px;
-  }
+  footer p { margin: 0 0 11px; }
 
   @media (max-width: 480px) {
-    h1.sitename { font-size: 1.8rem; }
-    .entry { grid-template-columns: 38px 1fr; gap: 12px; }
-    .rank { font-size: 1.5rem; }
-    .amount { font-size: 1.4rem; }
+    header.masthead { padding-top: 36px; }
+    .stamp { position: static; display: inline-block; margin-bottom: 16px; transform: rotate(-3deg); }
+    h1.sitename { font-size: 2.1rem; max-width: none; }
+    .stat-strip { gap: 26px; }
+    .stat .figure { font-size: 1.5rem; }
+    .entry { grid-template-columns: 40px 1fr; gap: 14px; }
+    .rank-badge { width: 38px; height: 38px; font-size: 1rem; }
+    .amount { font-size: 1.45rem; }
   }
 </style>
 </head>
 <body>
   <div class="wrap">
     <header class="masthead">
-      <div class="masthead-top">
-        <h1 class="sitename">Taxpayer <span class="accent">Watch</span></h1>
-        <span class="last-updated" id="lastUpdated"></span>
-      </div>
+      <div class="stamp">verified register</div>
+      <h1 class="sitename">Taxpayer <span class="accent">Watch</span></h1>
       <p class="strapline">Public money, ranked by how little sense it makes — worst first, then by size of the bill.</p>
+
+      <div class="stat-strip" id="statStrip"></div>
+
       <div class="controls">
-        <label for="levelFilter">Showing spending by:</label>
+        <label for="levelFilter">Showing:</label>
         <select id="levelFilter">
-          <option value="central" selected>Central government</option>
-          <option value="council" disabled>Local councils — coming soon</option>
+          <option value="central">Central government</option>
+          <option value="council">Local councils</option>
         </select>
-        <span class="scope-note">Sourced from published contract notices, NAO and PAC reports.</span>
+        <span class="scope-note">Sourced from contract notices, NAO/PAC reports and local reporting.</span>
       </div>
     </header>
 
     <main id="entries"></main>
 
     <footer>
-      <p>Entries are drawn from published government contract notices, National Audit Office reports and Public Accounts Committee findings, with links to the original source for every figure. The absurdity score is editorial judgement, not an official measure — it weighs things like budget overruns, lack of public justification, and whether the spend demonstrably helped taxpayers.</p>
+      <p>Entries are drawn from published government contract notices, National Audit Office reports, Public Accounts Committee findings and local news reporting, with a link to the original source on every entry. The absurdity score is editorial judgement, not an official measure — it weighs budget overruns, lack of public justification, and whether the spend demonstrably helped the people paying for it. The total above sums the headline figure quoted in each source; some are contract ceilings or estimates rather than confirmed final costs.</p>
       <p>Spotted something that belongs here, or think we've got a figure wrong? Every entry links to its source — check it, and let us know.</p>
     </footer>
   </div>
 
 <script>
   function scoreColor(score) {
-    // 1-10 scale, low = moss, mid = amber, high = alarm
     if (score >= 8) return 'var(--alarm)';
     if (score >= 5) return 'var(--amber)';
     return 'var(--moss)';
@@ -290,17 +363,44 @@
     return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
   }
 
+  function formatTotal(n) {
+    if (n >= 1e9) return '£' + (n / 1e9).toFixed(1).replace(/\.0$/, '') + 'bn+';
+    if (n >= 1e6) return '£' + (n / 1e6).toFixed(0) + 'm+';
+    return '£' + n.toLocaleString('en-GB');
+  }
+
   async function render() {
     const res = await fetch('data.json');
     const data = await res.json();
 
-    document.getElementById('lastUpdated').textContent = 'Updated ' + formatDate(data.lastUpdated);
-
     const levelFilter = document.getElementById('levelFilter');
     const container = document.getElementById('entries');
+    const statStrip = document.getElementById('statStrip');
+
+    function drawStats(level) {
+      const inLevel = data.entries.filter(e => e.level === level);
+      const total = inLevel.reduce((sum, e) => sum + e.amount, 0);
+      const worst = [...inLevel].sort((a, b) => b.absurdityScore - a.absurdityScore)[0];
+      statStrip.innerHTML = `
+        <div class="stat">
+          <span class="figure">${formatTotal(total)}</span>
+          <span class="label">flagged across ${inLevel.length} ${inLevel.length === 1 ? 'entry' : 'entries'}</span>
+        </div>
+        <div class="stat">
+          <span class="figure">${worst ? worst.absurdityScore + '/10' : '—'}</span>
+          <span class="label">${worst ? 'worst: ' + worst.department : 'no entries yet'}</span>
+        </div>
+        <div class="stat">
+          <span class="figure">${formatDate(data.lastUpdated)}</span>
+          <span class="label">last updated</span>
+        </div>
+      `;
+    }
 
     function draw() {
       const level = levelFilter.value;
+      drawStats(level);
+
       const filtered = data.entries
         .filter(e => e.level === level)
         .sort((a, b) => b.absurdityScore - a.absurdityScore || b.amount - a.amount);
@@ -312,19 +412,27 @@
         return;
       }
 
+      const levelLabel = level === 'central' ? 'Central government' : 'Local council';
+
       filtered.forEach((entry, i) => {
         const el = document.createElement('article');
         el.className = 'entry';
+        el.style.animationDelay = (i * 0.045) + 's';
         const color = scoreColor(entry.absurdityScore);
         el.innerHTML = `
-          <div class="rank">${i + 1}</div>
+          <div class="rank-badge" style="border-color:${color}; color:${color};">${i + 1}</div>
           <div class="entry-body">
             <h2>${entry.title}</h2>
-            <div class="meta-line"><span class="dept">${entry.department}</span> &middot; ${entry.period}</div>
+            <div class="meta-line">
+              <span class="dept">${entry.department}</span>
+              <span>&middot;</span>
+              <span>${entry.period}</span>
+              <span class="level-pill">${levelLabel}</span>
+            </div>
             <div class="figures-row">
               <span class="amount">${entry.amountLabel}</span>
               <div class="meter-wrap">
-                <span class="meter-label">ABSURDITY ${entry.absurdityScore}/10</span>
+                <div class="meter-top"><span>absurdity</span><span>${entry.absurdityScore}/10</span></div>
                 <div class="meter-track">
                   <div class="meter-fill" style="width:${entry.absurdityScore * 10}%; background:${color};"></div>
                 </div>
